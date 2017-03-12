@@ -20,7 +20,9 @@ if exist(fPath, 'file') ~= 2
         error(['Could not find ' fPath '.'])
     end
 end
-
+% add DLL files to the system's PATH environment variable
+[temp_path, ~, ~] = fileparts(which(mfilename));
+setenv('PATH', [[temp_path,'\ScanImageTiffReader\bin'] pathsep() getenv('PATH')])
 siTifObj = ScanImageTiffReader(fPath);
 if isempty(castType)
     imgStack = data(siTifObj);
