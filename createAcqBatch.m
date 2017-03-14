@@ -7,7 +7,8 @@ end
 mouse_set = [20,15,9,23];
 % date_set = {[161114,161117,161221],[161129,161227,170112,161205,161221],[160525,160516,160613]};
 % date_set = {161120,[],160608};
-date_set = {[],[],[],[170306,170307]};
+% date_set = {[],[161219,170112],[160516,160525],[170306,170307,170308,170309,170310,170313]};
+date_set = {[],[],[],[170306,170307,170308,170309,170310,170313]};
 
 save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
 
@@ -45,7 +46,7 @@ for mi = 1:length(mouse_set)
                     case {1,3,16}
                         obj.motionCorrectionFunction = @withinFile_fullFrame_fft;
                     case {9,13,15,20,22,23}
-                        obj.motionCorrectionFunction = @withinFile_withinFrame_lucasKanade;
+                        obj.motionCorrectionFunction = @lucasKanade_affineReg;
                 end
             else
                 obj.motionCorrectionFunction = motionCorrectionFunction;
