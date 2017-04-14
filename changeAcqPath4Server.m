@@ -6,8 +6,13 @@ function changeAcqPath4Server(obj)
     % [movStruct, nSlices, nChannels] = parseScanimageTiff(mov, scanImageMetadata);
     
     % extract the number of slices and channels
-    nSlices = length(obj.indexedMovie.slice);
-    nChannels = length(obj.indexedMovie.slice(1).channel);
+    if ~isempty(obj.indexedMovie)
+        nSlices = length(obj.indexedMovie.slice);
+        nChannels = length(obj.indexedMovie.slice(1).channel);
+    else
+        nSlices = 1;
+        nChannels = 1;
+    end
     
     % raw movies
     for mi = 1:length(obj.Movies)
@@ -15,10 +20,14 @@ function changeAcqPath4Server(obj)
     end
     for si = 1:nSlices
         % covFile
-        obj.roiInfo.slice(si).covFile.fileName = changePath4Server(obj.roiInfo.slice(si).covFile.fileName);
+        if ~isempty(obj.roiInfo)
+            obj.roiInfo.slice(si).covFile.fileName = changePath4Server(obj.roiInfo.slice(si).covFile.fileName);
+        end
         for ci = 1:nChannels
             % indexedMovie
-            obj.indexedMovie.slice(si).channel(ci).fileName = changePath4Server(obj.indexedMovie.slice(si).channel(ci).fileName);
+            if ~isempty(obj.indexedMovie)
+                obj.indexedMovie.slice(si).channel(ci).fileName = changePath4Server(obj.indexedMovie.slice(si).channel(ci).fileName);
+            end
             % corrected movies
             for mi = 1:length(obj.correctedMovies.slice(si).channel(ci).fileName)
                 obj.correctedMovies.slice(si).channel(ci).fileName{mi} = changePath4Server(obj.correctedMovies.slice(si).channel(ci).fileName{mi});
