@@ -4,13 +4,11 @@ if ~exist('FOV_list','var')
     FOV_list = {'FOV1_001'};
 end
 
-mouse_set = [20,15,9,23];
-% date_set = {[161114,161117,161221],[161129,161227,170112,161205,161221],[160525,160516,160613]};
-% date_set = {161120,[],160608};
-% date_set = {[],[161219,170112],[160516,160525],[170306,170307,170308,170309,170310,170313]};
-% date_set = {[],[],[],[170306,170307,170308,170309,170310,170313]};
-% date_set = {[],[],[],[170309,170313,170314,170317,170320,170321]};
-date_set = {[],[],[],[170313]};
+% mouse_set = [20,15,9,23];
+% date_set = {[],[],[],[170314,170317,170320,170321]};
+
+mouse_set = 35;
+date_set = {[170412,170413,170414,170417,170418,170419]};
 
 save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
 
@@ -20,7 +18,7 @@ for mi = 1:length(mouse_set)
         initials = getInitials(mouse_num);
         date_num = date_set{mi}(di);
         
-        if mouse_num==23
+        if ismember(mouse_num,[23,35])
             FOV_list = {'FOV1_00001'};
         end
 
