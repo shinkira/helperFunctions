@@ -8,7 +8,7 @@ end
 % date_set = {[],[],[],[170314,170317,170320,170321]};
 
 mouse_set = 35;
-date_set = {[170412,170413,170414,170417,170418,170419]};
+date_set = {[170508,170509]};
 
 save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
 
