@@ -10,7 +10,9 @@ function createAcqBatch
 % date_set = {[161125,161201,161216,161226]};
 
 mouse_set = 35;
-date_set = {[170508,170509]};
+date_set = {[170502,170503,170504,170505,...
+             170508,170509,170510,170511,170512,...
+             170515,170516,1705017]};
 
 save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
 
@@ -44,14 +46,15 @@ for mi = 1:length(mouse_set)
             % create obj
             obj = Acquisition2P(FOV_name,@SK2Pinit,defaultDir);
 
-            if ~exist('motionCorrectionFunction','var')
+            if ~exist('obj.motionCorrectionFunction','var')
                 % overwrite motion correction function
-                switch mouse_num
-                    case {1,3,16}
-                        obj.motionCorrectionFunction = @withinFile_fullFrame_fft;
-                    case {9,13,15,20,22,23,35}
-                        obj.motionCorrectionFunction = @lucasKanade_affineReg;
-                end
+                obj.motionCorrectionFunction = @lucasKanade_plus_nonrigid;
+                % switch mouse_num
+                %     case {1,3,16}
+                %         obj.motionCorrectionFunction = @withinFile_fullFrame_fft;
+                %     case {9,13,15,20,22,23,35}
+                %         obj.motionCorrectionFunction = @lucasKanade_affineReg;
+                % end
             else
                 obj.motionCorrectionFunction = motionCorrectionFunction;
             end
