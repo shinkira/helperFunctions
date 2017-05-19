@@ -22,7 +22,12 @@ date_set = {[160516,160525,160608,160613],...
 %              170508,170509,170510,170511,170512,...
 %              170515,170516,1705017]};
 
-save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
+
+if ispc
+    save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
+else
+    save_dir = '/Volumes/Neurobio/HarveyLab/Shin/ShinDataAll/Imaging/BatchAcqObj';
+end
 
 for mi = 1:length(mouse_set)
     for di = 1:length(date_set{mi})
@@ -37,8 +42,13 @@ for mi = 1:length(mouse_set)
         end
 
         if exist('mouse_num','var') && exist('date_num','var')
-            defaultDir = sprintf('\\\\research.files.med.harvard.edu\\neurobio\\HarveyLab\\Shin\\ShinDataAll\\Imaging\\%s%03d\\%06d\\',...
-                initials,mouse_num,date_num);
+            if ispc
+                defaultDir = sprintf('\\\\research.files.med.harvard.edu\\neurobio\\HarveyLab\\Shin\\ShinDataAll\\Imaging\\%s%03d\\%06d\\',...
+                    initials,mouse_num,date_num);
+            else
+                defaultDir = sprintf('/Volumes/Neurobio/HarveyLab/Shin/ShinDataAll/Imaging/%s%03d/%06d/',...
+                    initials,mouse_num,date_num);
+            end
         else
             error('Essential variables are missing!')
         end
