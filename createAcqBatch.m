@@ -24,7 +24,7 @@ function createAcqBatch
 %              170515,170516,1705017]};
 
 mouse_set = 35;
-date_set = {[170518,170519]};
+date_set = {[170503]};
 
 if ispc
     save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
