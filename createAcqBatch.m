@@ -26,7 +26,11 @@ function createAcqBatch
 mouse_set = 35;
 date_set = {[170518,170519]};
 
-save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
+if ispc
+    save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
+else
+    save_dir = '/Volumes/Neurobio/HarveyLab/Shin/ShinDataAll/Imaging/BatchAcqObj';
+end
 
 for mi = 1:length(mouse_set)
     for di = 1:length(date_set{mi})
@@ -41,8 +45,13 @@ for mi = 1:length(mouse_set)
         end
 
         if exist('mouse_num','var') && exist('date_num','var')
-            defaultDir = sprintf('\\\\research.files.med.harvard.edu\\neurobio\\HarveyLab\\Shin\\ShinDataAll\\Imaging\\%s%03d\\%06d\\',...
-                initials,mouse_num,date_num);
+            if ispc
+                defaultDir = sprintf('\\\\research.files.med.harvard.edu\\neurobio\\HarveyLab\\Shin\\ShinDataAll\\Imaging\\%s%03d\\%06d\\',...
+                    initials,mouse_num,date_num);
+            else
+                defaultDir = sprintf('/Volumes/Neurobio/HarveyLab/Shin/ShinDataAll/Imaging/%s%03d/%06d/',...
+                    initials,mouse_num,date_num);
+            end
         else
             error('Essential variables are missing!')
         end
