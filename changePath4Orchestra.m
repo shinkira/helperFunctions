@@ -12,6 +12,6 @@ function OrchestraName = changePath4Orchestra(name,server_name)
         case 'no_backup'
             %%% save in the temporary folder (no_backup) ***
             Imaging_ind = strfind(name,'Imaging');
-            OrchestraName = ['/n/no_backup/harvey/Shin/',name(Imaging_ind(1):end)];
+            OrchestraName = ['/n/no_backup/neurobio/harvey/Shin/',name(Imaging_ind(1):end)];
     end
 end
