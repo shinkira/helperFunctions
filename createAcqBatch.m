@@ -22,7 +22,6 @@ date_set = {[160516,160525,160608,160613],...
 %              170508,170509,170510,170511,170512,...
 %              170515,170516,1705017]};
 
-
 if ispc
     save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
 else
