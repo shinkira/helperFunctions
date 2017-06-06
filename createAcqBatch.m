@@ -1,7 +1,16 @@
-function createAcqBatch
+function createAcqBatch(server_name)
 
-% mouse_set = [20,22,15];
-% date_set = {[161115],[161207],[161128,161222,161229]};
+if nargin<1
+ error('select the server_name: data2; scratch2; no_backup');
+end
+
+% ALL
+mouse_set = [9,20,22,15,35];
+date_set = {[160516,160525,160608,160613,160513,160517,160519,160520,160526],...
+            [161114,161117,161120,161221,161229,161115,161119,161206],...
+            [161129,161201,161205,161207],...
+            [161129,161205,161219,161221,161223,161227,170112,170116,170117,161125,161128,161201,161216,161222,161226,161229],...
+            [170502,170504,170505,170508,170509,170510,170511,170512,170516,170515,170517,170518,170519]};
 
 % PPC
 % mouse_set = [9,20,22,15];
@@ -17,14 +26,17 @@ function createAcqBatch
 %             [161205,161207],...
 %             [161125,161128,161201,161216,161222,161226,161229]};
 
-% M1 & M2
+% % M1 & M2
 % mouse_set = 35;
 % date_set = {[170502,170503,170504,170505,...
 %              170508,170509,170510,170511,170512,...
-%              170515,170516,1705017]};
+%              170515,170516,170517,170518,170519,...
+%              170522]};
+         
+% % M1 & M2
+% mouse_set = 35;
+% date_set = {[999999]};
 
-mouse_set = [35];
-date_set = {[170503]};
 
 if ispc
     save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
@@ -75,7 +87,6 @@ for mi = 1:length(mouse_set)
             end
             fprintf('motionCorrectionFunction:\t%s\n',func2str(obj.motionCorrectionFunction));
             % select the server_name: data2; scratch2; no_backup;
-            server_name = 'no_backup';
             obj.defaultDir = changePath4Orchestra(obj.defaultDir,server_name);
             for i = 1:length(obj.Movies)
                 obj.Movies{i} = changePath4Orchestra(obj.Movies{i},server_name);
