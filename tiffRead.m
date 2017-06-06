@@ -59,7 +59,14 @@ if nargout > 1
     try
         imgDesc = t.getTag('ImageDescription');
     catch
-        imgDesc = [];
+        try
+            fPath = strrep(fPath,'TEST','FOV1');
+            t = Tiff(fPath);
+            imgDesc = t.getTag('ImageDescription');
+            fprintf('For TEST files, scanimage metadata was extracted from FOV1 files')
+        catch
+            imgDesc = [];
+        end
     end
     if isempty(imgDesc)
         scanImageVersion = -1;
