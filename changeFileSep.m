@@ -1,7 +1,6 @@
-function new_name = changeFileSep(old_name)
-
-    if ispc
-        new_name = strrep(old_name,'/','\');
-    elseif ismac
-        new_name = strrep(old_name,'\','/');
-    end
+function filename = changeFilesep(filename)
+    
+    filename = strrep(filename,'/',filesep);
+    filename = strrep(filename,'\',filesep);
+    
+end
