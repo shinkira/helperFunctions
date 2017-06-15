@@ -92,15 +92,19 @@ end
 computerName = getComputerName;
 switch computerName
     case 'shin-pc'
-        myDir = 'C:\Users\Shin\Documents\MATLAB\matproj';
+        myDir = 'C:\Users\Shin\Documents\MATLAB\ShinCode\matproj';
+        rootDirFrom = '/Users/shin/Documents/';
+        rootDirTo = 'C:\Users\Shin\Documents\';
     case 'shinichiros-macbook-pro'
-        myDir = 'Users/shin/Documents/MATLAB/matproj';
+        myDir = '/Users/shin/Documents/MATLAB/ShinCode/matproj/';
+        rootDirFrom = 'C:\Users\Shin\Documents\';
+        rootDirTo = '/Users/shin/Documents/';
 end
 if isempty(fileName)
     % No filename specified. Choose it with a GUI.
     useGUI = true;
     if action == LOAD
-        [fileName, pathName] = uigetfile('*.mat', 'Pick a Matlab project file to load.',myDir);
+        [fileName, pathName] = uigetfile(fullfile(myDir,'*.mat'), 'Pick a Matlab project file to load.');
     elseif action == SAVE
         [fileName, pathName] = uiputfile('*.mat', 'Pick a Matlab project file to save.',fullfile(myDir,'matproj.mat'));
     end
@@ -148,6 +152,22 @@ if action == LOAD
         error([mfilename '.m--Specified file is not a .mat file.']);
     end
     
+    savedWorkingDir = matprojData.workingDir;
+    
+    % Change path based on a computer
+    matprojData.activeDocName = changeFilesep(strrep(matprojData.activeDocName,rootDirFrom,rootDirTo));
+    matprojData.workingDir    = changeFilesep(strrep(matprojData.workingDir,rootDirFrom,rootDirTo));
+    matprojData.path          = changeFilesep(strrep(matprojData.path,rootDirFrom,rootDirTo));
+    for fi = 1:length(matprojData.files)
+        matprojData.files(fi).Filename = changeFilesep(strrep(matprojData.files(fi).Filename,rootDirFrom,rootDirTo));
+    end
+    
+    if strcmp(savedWorkingDir,matprojData.workingDir)
+        same_machine = 1;
+    else
+        same_machine = 0;
+    end
+
     % Close existing project.
     docHndl = matlab.desktop.editor.getAll();
     numFiles = length(docHndl);
@@ -190,7 +210,7 @@ if action == LOAD
     
     % Set path. For backwards compatibility, check that path was saved with
     % project.
-    if isfield(matprojData,'path')
+    if isfield(matprojData,'path') && same_machine
         path(matprojData.path);
     end
     
