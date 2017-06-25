@@ -1,4 +1,4 @@
-function [f_, stats] = getF_(f, mode, winSize)
+function [f_, stats] = getF_(f, mode, frameRate)
 % f_ = getF_(f, mode)
 % default mode is linear, w/ robust fit estimation
 
@@ -6,8 +6,9 @@ if ~exist('mode','var') || isempty(mode)
     mode = 'custom_wfun';
 end
 
-if ~exist('winSize','var') || isempty(winSize)
-    winSize = 27*2*60; % Assuming a framerate of 27 Hz;
+if (strcmp(mode,'custom_wfun') || strcmp(mode,'prctile'))...
+        && (~exist('frameRate','var') || isempty(frameRate))
+    error('specify frameRate')
 end
 
 switch mode
@@ -39,6 +40,7 @@ switch mode
         
     case 'prctile'
         prctile = 10;
+        winSize = frameRate*2*60; % 2 min window
         f_ = runningPrctile(f, round(winSize), prctile);
         
 end
