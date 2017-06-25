@@ -169,10 +169,12 @@ if action == LOAD
     end
 
     % Close existing project.
-    docHndl = matlab.desktop.editor.getAll();
-    numFiles = length(docHndl);
-    for iFile = 1:numFiles
-        docHndl(iFile).close;
+    if 0
+        docHndl = matlab.desktop.editor.getAll();
+        numFiles = length(docHndl);
+        for iFile = 1:numFiles
+            docHndl(iFile).close;
+        end
     end
     
     % Open previously-saved project.
