@@ -39,7 +39,7 @@ switch mode
         f_ = b(1)+b(2)*x;
         
     case 'prctile'
-        prctile = 10;
+        prctile = 50; % 10 is the default
         winSize = frameRate*2*60; % 2 min window
         f_ = runningPrctile(f, round(winSize), prctile);
         
