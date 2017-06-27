@@ -95,6 +95,10 @@ switch computerName
         myDir = 'C:\Users\Shin\Documents\MATLAB\ShinCode\matproj';
         rootDirFrom = '/Users/shin/Documents/';
         rootDirTo = 'C:\Users\Shin\Documents\';
+    case 'harveylabrig51'
+        myDir = 'C:\Users\Shin\Documents\MATLAB\ShinCode\matproj';
+        rootDirFrom = 'C:\Users\Shin\Documents\';
+        rootDirTo = 'C:\Users\Shin\Documents\';
     case 'shinichiros-macbook-pro'
         myDir = '/Users/shin/Documents/MATLAB/ShinCode/matproj/';
         rootDirFrom = 'C:\Users\Shin\Documents\';
