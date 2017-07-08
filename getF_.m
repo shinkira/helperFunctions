@@ -1,4 +1,4 @@
-function [f_, stats] = getF_(f, mode, frameRate)
+function [f_, stats] = getF_(f, mode, frameRate, base_prctile)
 % f_ = getF_(f, mode)
 % default mode is linear, w/ robust fit estimation
 
@@ -6,7 +6,11 @@ if ~exist('mode','var') || isempty(mode)
     mode = 'custom_wfun';
 end
 
-if (strcmp(mode,'custom_wfun') || strcmp(mode,'prctile'))...
+if strcmp('mode','base_prctile') && isempty(base_prctile)
+    error('Specify base_prctile for the baseline estimation.')
+end
+
+if (strcmp(mode,'custom_wfun') || strcmp(mode,'base_prctile'))...
         && (~exist('frameRate','var') || isempty(frameRate))
     error('specify frameRate')
 end
@@ -39,8 +43,7 @@ switch mode
         f_ = b(1)+b(2)*x;
         
     case 'prctile'
-        prctile = 50; % 10 is the default
         winSize = frameRate*2*60; % 2 min window
-        f_ = runningPrctile(f, round(winSize), prctile);
+        f_ = runningPrctile(f, round(winSize), base_prctile);
         
 end
