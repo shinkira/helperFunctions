@@ -5,7 +5,7 @@ function createImgSync(mouse_num)
     date_list = getDateListImg(mouse_num);
         
     save_dir = 'C:\Users\Shin\Documents\MATLAB\ShinCode\Imaging';
-    file_name = sprintf('imgSync2NoBackup_%s_test.sh',mouseID);
+    file_name = sprintf('imgSync2NoBackup_%s.sh',mouseID);
     
     fid = fopen(fullfile(save_dir,file_name),'w');
     
