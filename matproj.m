@@ -159,11 +159,11 @@ if action == LOAD
     savedWorkingDir = matprojData.workingDir;
     
     % Change path based on a computer
-    matprojData.activeDocName = changeFileSep(strrep(matprojData.activeDocName,rootDirFrom,rootDirTo));
-    matprojData.workingDir    = changeFileSep(strrep(matprojData.workingDir,rootDirFrom,rootDirTo));
-    matprojData.path          = changeFileSep(strrep(matprojData.path,rootDirFrom,rootDirTo));
+    matprojData.activeDocName = changeFilesep(strrep(matprojData.activeDocName,rootDirFrom,rootDirTo));
+    matprojData.workingDir    = changeFilesep(strrep(matprojData.workingDir,rootDirFrom,rootDirTo));
+    matprojData.path          = changeFilesep(strrep(matprojData.path,rootDirFrom,rootDirTo));
     for fi = 1:length(matprojData.files)
-        matprojData.files(fi).Filename = changeFileSep(strrep(matprojData.files(fi).Filename,rootDirFrom,rootDirTo));
+        matprojData.files(fi).Filename = changeFilesep(strrep(matprojData.files(fi).Filename,rootDirFrom,rootDirTo));
     end
     
     if strcmp(savedWorkingDir,matprojData.workingDir)
@@ -189,8 +189,11 @@ if action == LOAD
         thisFileName = thisMatProjMember.Filename;
         thisSelection = thisMatProjMember.Selection;
         thisEditable = thisMatProjMember.Editable;
-        
-        editorObj = matlab.desktop.editor.openDocument(thisFileName);
+        try
+            editorObj = matlab.desktop.editor.openDocument(thisFileName);
+        catch
+            editorObj = [];
+        end
         
         if isempty(editorObj)
             warning([mfilename '.m--File ' thisFileName ' from loaded project was not found.']);
