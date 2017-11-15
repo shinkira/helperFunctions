@@ -1,7 +1,8 @@
 function createAcqBatch(server_name)
 
 if nargin<1
- error('select the server_name: data2; scratch2; no_backup');
+    server_name = 'scratch2';
+    % error('select the server_name: data2; scratch2; no_backup');
 end
 
 % ALL
@@ -27,9 +28,21 @@ end
 %             [161125,161128,161201,161216,161222,161226,161229]};
 
 % % M1 & M2
-
+% 
 mouse_set = [31];
-date_set = {[170720]};
+date_set = {[170922]};
+
+% mouse_set = [31];
+% date_set = {[170811,170815,170816,170817,170818,...
+%              170821,170822,170823,170824,170825,...
+%              170828,170829,170830,170831,170901,...
+%              170904,170905]};
+         
+% mouse_set = [45];
+% date_set = {[170822,170823,170824,170825,...
+%              170828,170829,170830,170831]};
+
+         
 
 % mouse_set = [35,31];
 % date_set = {[170515,170516,170517,170518,170519,170522],...
@@ -55,7 +68,7 @@ for mi = 1:length(mouse_set)
         initials = getInitials(mouse_num);
         date_num = date_set{mi}(di);
         
-        if ismember(mouse_num,[22,23,35,31])
+        if ismember(mouse_num,[22,23,35,31,45])
             FOV_list = {'FOV1_00001'};
         else
             FOV_list = {'FOV1_001'};
