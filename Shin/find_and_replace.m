@@ -45,7 +45,7 @@ function find_and_replace(file, expression, replacement)
         file = {file};
     elseif isstruct(file) && any(strcmp(fieldnames(file), 'name'))
         file = {file(:).name};
-    elseif ~iscell(file);
+    elseif ~iscell(file)
         error('find_and_replace:invalid_inputs', ...
               'Unknown input type for ''file''.');
     end
@@ -75,8 +75,8 @@ function find_and_replace(file, expression, replacement)
         if ~strcmp(text,old_text)
             % replaced
             fprintf('Replacement\nFile: %s\nOld: %s\nNew: %s\n\n',...
-                file{k},sprintf(expression),sprintf(replacement));
-            continue % for dry run
+            file{k},sprintf(expression),sprintf(replacement));
+            % continue % for dry run
         else
             % not replaced
             continue
