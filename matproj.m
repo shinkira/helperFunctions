@@ -189,6 +189,14 @@ if action == LOAD
         thisFileName = thisMatProjMember.Filename;
         thisSelection = thisMatProjMember.Selection;
         thisEditable = thisMatProjMember.Editable;
+        
+        [pathstr1,name,~] = fileparts(thisFileName);
+        [pathstr2,name,~] = fileparts(which(name)); % top on the path
+        
+        if ~strcmp(pathstr1,pathstr2)
+            thisFileName = which(name);
+        end
+                
         try
             editorObj = matlab.desktop.editor.openDocument(thisFileName);
         catch
