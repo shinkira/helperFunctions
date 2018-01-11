@@ -6,7 +6,15 @@ function transportFigBatch(varargin)
     end
         
     % Copy all figures to the transfer directory in PNG format
-    figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
+    switch getComputerName
+        case 'shinichiros-macbook-pro'
+            figpath = '/Users/shin/Documents/MATLAB/ShinData/Transfer/';
+        case 'harveylabrig51'
+            figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
+        case 'shin-pc'
+            figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
+    end
+        
     h = findobj('type','figure');
     n = length(h);
     fprintf('Saving %d figures in %s...\n',n,format);
