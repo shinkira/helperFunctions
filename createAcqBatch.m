@@ -57,7 +57,7 @@ date_set = {[170922]};
 
 
 if ispc
-    save_dir = '\\research.files.med.harvard.edu\neurobio\HarveyLab\Shin\ShinDataAll\Imaging\BatchAcqObj';
+    save_dir = '\\research.files.med.harvard.edu\Neurobio\HarveyLab\Tier2\Shin\ShinDataAll\Imaging\BatchAcqObj';
 else
     save_dir = '/Volumes/Neurobio/HarveyLab/Shin/ShinDataAll/Imaging/BatchAcqObj';
 end
@@ -76,7 +76,7 @@ for mi = 1:length(mouse_set)
 
         if exist('mouse_num','var') && exist('date_num','var')
             if ispc
-                defaultDir = sprintf('\\\\research.files.med.harvard.edu\\neurobio\\HarveyLab\\Shin\\ShinDataAll\\Imaging\\%s%03d\\%06d\\',...
+                defaultDir = sprintf('\\\\research.files.med.harvard.edu\\Neurobio\\HarveyLab\\Tier2\\Shin\\ShinDataAll\\Imaging\\%s%03d\\%06d\\',...
                     initials,mouse_num,date_num);
             else
                 defaultDir = sprintf('/Volumes/Neurobio/HarveyLab/Shin/ShinDataAll/Imaging/%s%03d/%06d/',...
