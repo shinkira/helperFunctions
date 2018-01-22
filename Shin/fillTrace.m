@@ -37,7 +37,6 @@ function varargout = fillTrace(X,Y,err,varargin)
     % h = patch(M(:,1),M(:,2),fill_c);
     % set(h,'LineStyle','none','FaceAlpha',0.7);
     plot(X,Y,'color',c,'LineWidth',1);
-    hold off
     
     varargout{1} = h;
     return
