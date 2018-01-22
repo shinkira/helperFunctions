@@ -21,6 +21,7 @@ function transportFigBatch(varargin)
     for i = 1:n
         fig_name = ['temp',num2str(h(i).Number)];
         figure(h(i).Number)
+        set(gcf,'color','w')
         switch format
             case 'eps'
                 print2eps([figpath,fig_name,'.eps']);
