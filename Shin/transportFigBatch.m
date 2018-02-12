@@ -1,8 +1,14 @@
 function transportFigBatch(varargin)
-    if isempty(varargin)
+
+    if length(varargin)<1
         format = 'eps';
     else
         format = varargin{1};
+    end
+    if length(varargin)<2
+        dropbox_flag = 0;
+    else
+        dropbox_flag = varargin{2};        
     end
         
     % Copy all figures to the transfer directory in PNG format
@@ -12,7 +18,11 @@ function transportFigBatch(varargin)
         case 'harveylabrig51'
             figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
         case 'shin-pc'
-            figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
+            if dropbox_flag
+                figpath = 'C:\Users\Shin\Dropbox (HMS)\TempFigs\';
+            else
+                figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
+            end
     end
         
     h = findobj('type','figure');
