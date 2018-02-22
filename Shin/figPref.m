@@ -1,11 +1,16 @@
-function figPref
-    set(0,'defaultaxesfontsize',18);
-    set(0,'defaulttextfontsize',18);
+function figPref(font_size)
+
+    if isempty(font_size)
+        font_size = 18;
+    end
+    
+    set(0,'defaultaxesfontsize',font_size);
+    set(0,'defaulttextfontsize',font_size);
     set(0,'defaultaxesfontweight','bold');
     set(0,'defaulttextfontweight','bold');
-    if 1
-        set(0,'defaultaxesfontsize',10);
-        set(0,'defaulttextfontsize',10);
+    if 0
+        set(0,'defaultaxesfontsize',6);
+        set(0,'defaulttextfontsize',6);
     end
     set(0,'defaultaxestickdir','out');
     set(0,'defaultaxestickdirmode','manual');
