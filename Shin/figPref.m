@@ -1,14 +1,14 @@
 function figPref(font_size)
 
-    if isempty(font_size)
-        font_size = 18;
+    if ~exist('font_size','var')
+        font_size = 12;
     end
     
     set(0,'defaultaxesfontsize',font_size);
     set(0,'defaulttextfontsize',font_size);
     set(0,'defaultaxesfontweight','bold');
     set(0,'defaulttextfontweight','bold');
-    if 0
+    if 1
         set(0,'defaultaxesfontsize',6);
         set(0,'defaulttextfontsize',6);
     end
