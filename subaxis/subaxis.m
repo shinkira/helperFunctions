@@ -27,7 +27,17 @@ function h=subaxis(varargin)
 
 f=gcf;
 
-
+%%%%%%%%%%%%% modified by SK %%%%%%%%%%%%%
+temp = varargin;
+varargin = [];
+for i = 1:nargin
+    if iscell(temp{i})
+        varargin = [varargin,temp{i}];
+    else
+        varargin = [varargin,temp(i)];
+    end
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 UserDataArgsOK=0;
 Args=get(f,'UserData');
