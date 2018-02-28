@@ -10,6 +10,11 @@ function transportFigBatch(varargin)
     else
         dropbox_flag = varargin{2};        
     end
+    if length(varargin)<3
+        headder = 'temp';
+    else
+        headder = varargin{3};        
+    end
         
     % Copy all figures to the transfer directory in PNG format
     switch getComputerName
@@ -29,7 +34,7 @@ function transportFigBatch(varargin)
     n = length(h);
     fprintf('Saving %d figures in %s...\n',n,format);
     for i = 1:n
-        fig_name = ['temp',num2str(h(i).Number)];
+        fig_name = [headder,'_',num2str(h(i).Number)];
         figure(h(i).Number)
         set(gcf,'color','w')
         switch format
