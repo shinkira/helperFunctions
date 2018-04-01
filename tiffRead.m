@@ -71,11 +71,11 @@ if nargout > 1
     if isempty(imgDesc)
         scanImageVersion = -1;
     else
-        if ~isempty(strfind(imgDesc, 'scanimage'))
+        if contains(imgDesc, 'scanimage')
             scanImageVersion = 4;
-        elseif ~isempty(strfind(imgDesc, 'state.'))
+        elseif contains(imgDesc, 'state.')
             scanImageVersion = 3;
-        elseif ~isempty(strfind(imgDesc, 'dcOverVoltage'))
+        elseif contains(imgDesc, 'dcOverVoltage')
             scanImageVersion = 2016;
         else
             scanImageVersion = -1;
