@@ -1,4 +1,4 @@
-function gitInfo=getGitInfo()
+function gitInfo=getGitInfo(GitHubDirPath)
 % Matlab script to get information about the Git repository in the current directory, including: 
 %          - branch name of the current Git Repo 
 %          -Git SHA1 HASH of the most recent commit
@@ -56,8 +56,10 @@ function gitInfo=getGitInfo()
 % authors and should not be interpreted as representing official policies, either expressed
 % or implied, of <copyright holder>.
 
+current_path = pwd;
+cd(GitHubDirPath)
 
- gitInfo=[];
+gitInfo=[];
 if ~exist('.git','file') || ~exist('.git/HEAD','file')
     %Git is not present
     return
@@ -153,3 +155,5 @@ for k=1:length(lines)
 end
 
 gitInfo.url=url;
+
+cd(current_path);
