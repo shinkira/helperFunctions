@@ -5,11 +5,9 @@ if nargin<1
     % error('select the server_name: data2; scratch2; no_backup');
 end
 
-
-
 github_dir = 'C:\Users\Shin\Documents\GitHub\DmtsShared\DMTS';
-
 load(fullfile(github_dir,'info_set_good_okay.mat'));
+
 mouse_set = [9,15,20,31,35,45];
 for mi = 1:length(mouse_set)
     pick = cell2mat(info_set(:,1))==mouse_set(mi);
@@ -29,7 +27,7 @@ for mi = 1:length(mouse_set)
         initials = getInitials(mouse_num);
         date_num = date_set{mi}(di);
                 
-        if ismember(mouse_num,[22,23,35,31,45])
+        if ismember(mouse_num,[22,23,31,35,45])
             FOV_list = {'FOV1_00001'};
         else
             FOV_list = {'FOV1_001'};
@@ -63,7 +61,7 @@ for mi = 1:length(mouse_set)
             % create obj
             obj = Acquisition2P(FOV_name,@SK2Pinit,defaultDir);
 
-            if ~exist('obj.motionCorrectionFunction','var')
+            if ~exist('motionCorrectionFunction','var')
                 % overwrite motion correction function
                 obj.motionCorrectionFunction = @lucasKanade_plus_nonrigid;
             else
