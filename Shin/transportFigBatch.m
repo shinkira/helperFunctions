@@ -41,7 +41,7 @@ function transportFigBatch(varargin)
             case 'eps'
                 print2eps([figpath,fig_name,'.eps']);
             case 'png'
-                export_fig(gcf,[figpath,fig_name],'-png','-nocrop');
+                export_fig(gcf,[figpath,fig_name,'.png'],'-png','-nocrop');
         end
     end
 end
