@@ -92,15 +92,15 @@ end
 computerName = getComputerName;
 switch computerName
     case 'shin-pc'
-        myDir = 'C:\Users\Shin\Documents\MATLAB\ShinCode\matproj';
+        myDir = 'C:\Users\Shin\Documents\GitHub\matproj';
         rootDirFrom = '/Users/shin/Documents/';
         rootDirTo = 'C:\Users\Shin\Documents\';
     case 'harveylabrig51'
-        myDir = 'C:\Users\Shin\Documents\MATLAB\ShinCode\matproj';
+        myDir = 'C:\Users\Shin\Documents\GitHub\matproj';
         rootDirFrom = 'C:\Users\Shin\Documents\';
         rootDirTo = 'C:\Users\Shin\Documents\';
     case 'shin-macbook-pro'
-        myDir = '/Users/shin/Documents/MATLAB/ShinCode/matproj/';
+        myDir = '/Users/shin/Documents/GitHub/matproj/';
         rootDirFrom = 'C:\Users\Shin\Documents\';
         rootDirTo = '/Users/shin/Documents/';
 end
