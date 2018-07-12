@@ -18,8 +18,8 @@ function transportFigBatch(varargin)
         
     % Copy all figures to the transfer directory in PNG format
     switch getComputerName
-        case 'shinichiros-macbook-pro'
-            figpath = '/Users/shin/Documents/MATLAB/ShinData/Transfer/';
+        case 'shin-macbook-pro'
+            figpath = '/Users/shin/Dropbox (HMS)/TempFigs/';
         case 'harveylabrig51'
             figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
         case 'shin-pc'
