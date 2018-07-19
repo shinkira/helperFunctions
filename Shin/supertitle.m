@@ -12,10 +12,10 @@ function hout=supertitle(str)
 % Parameters used to position the supertitle.
 
 % Amount of the figure window devoted to subplots
-plotregion = .96;
+plotregion = .95;
 
 % Y position of title in normalized coordinates
-titleypos  = .98;
+titleypos  = .97;
 
 % Fontsize for supertitle
 fs = get(gcf,'defaultaxesfontsize')+10;
