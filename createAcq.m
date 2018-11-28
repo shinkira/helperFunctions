@@ -4,6 +4,7 @@ function createAcq(mouse_num,date_num,varargin)
     initials = getInitials(mouse_num);
     mouseID = sprintf('%s%03d',initials,mouse_num);
     server_name = 'scratch2';
+    o2_flag = true;
 
     if exist('mouse_num','var') && exist('date_num','var')
         if ispc
@@ -36,12 +37,15 @@ function createAcq(mouse_num,date_num,varargin)
         obj.motionCorrectionFunction = motionCorrectionFunction;
     end
     fprintf('motionCorrectionFunction:\t%s\n',func2str(obj.motionCorrectionFunction));
-    % select the server_name: data2; scratch2; no_backup;
-    obj.defaultDir = changePath4Orchestra(obj.defaultDir,server_name);
-    for i = 1:length(obj.Movies)
-        obj.Movies{i} = changePath4Orchestra(obj.Movies{i},server_name);
+    % select  server_name: data2; scratch2; no_backup;
+    if o2_flag
+        fprintf('Will process movies saved @ %s\n',server_name)
+        obj.defaultDir = changePath4Orchestra(obj.defaultDir,server_name);
+        for i = 1:length(obj.Movies)
+            obj.Movies{i} = changePath4Orchestra(obj.Movies{i},server_name);
+        end
     end
-    fprintf('Will process movies saved @ %s\n',server_name)
+    
     obj.save(save_dir)
 
 return
