@@ -4,7 +4,7 @@ function figPref(font_size)
         font_size = 12;
     end
     
-    set(0,'defaultaxesfontsize',font_size);
+    set(0,'DefaultAxesFontSize',font_size);
     set(0,'defaulttextfontsize',font_size);
     set(0,'defaultaxesfontweight','bold');
     set(0,'defaulttextfontweight','bold');
