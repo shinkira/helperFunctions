@@ -1,4 +1,14 @@
 function getComment(comment,n_shift,two_col)
+
+    if ~exist('two_col','var')
+        two_col = false;
+    end
+
+    createComment(comment,n_shift,two_col);
+    createComment('',n_shift,two_col);
+
+end
+function createComment(comment,n_shift,two_col)
     
     if ~isempty(comment) && ~isstr(comment)
         error('comment must be a string.')
