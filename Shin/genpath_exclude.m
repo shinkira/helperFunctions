@@ -44,6 +44,9 @@
 
 function p = genpath_exclude(d,excludeDirs)
 	% if the input is a string, then use it as the searchstr
+    
+    p = '';
+    
 	if ischar(excludeDirs)
 		excludeStr = excludeDirs;
 	else
