@@ -243,7 +243,7 @@ classdef svm
                     classx(classx==classInstance(i))=svmValue;
                     classx(classx~=svmValue)=1;
                     classx(classx==svmValue)=0;
-                    model{i}=svmtrain(training,classx,varargin{:});
+                    model{i}=fitcsvm(training,classx,varargin{:});
                     fprintf('Multi Class SVM Model for Class Instance %d --->\n',classInstance(i))
                     disp(model{i})
                 end
@@ -334,7 +334,7 @@ classdef svm
             
             % deal with struct input case
             if ~isstruct(svmStruct)
-                error(message('stats:svmclassify:TwoInputsNoStruct'));
+                % error(message('stats:svmclassify:TwoInputsNoStruct'));
             end
             
             if ~isnumeric(sample) || ~ismatrix(sample)
@@ -370,7 +370,7 @@ classdef svm
                 end
             end
             
-            groupnames = svmStruct.GroupNames;
+            groupnames = svmStruct.ClassNames;
             
             % check group is a vector -- though char input is special...
             if ~isvector(groupnames) && ~ischar(groupnames)
@@ -385,12 +385,12 @@ classdef svm
             if ~isempty(sample)
                 % shift and scale the data if necessary:
                 sampleOrig = sample;
-                if ~isempty(svmStruct.ScaleData)
-                    for c = 1:size(sample, 2)
-                        sample(:,c) = svmStruct.ScaleData.scaleFactor(c) * ...
-                            (sample(:,c) +  svmStruct.ScaleData.shift(c));
-                    end
-                end
+%                 if ~isempty(svmStruct.ScaleData)
+%                     for c = 1:size(sample, 2)
+%                         sample(:,c) = svmStruct.ScaleData.scaleFactor(c) * ...
+%                             (sample(:,c) +  svmStruct.ScaleData.shift(c));
+%                     end
+%                 end
                 
                 %     try
                 [outclass,val] = svm.svmdecision(sample,svmStruct);

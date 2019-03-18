@@ -62,7 +62,7 @@
   
 function [W,J,u] = libsvc(varargin)
 		
-	checktoolbox('libsvm');
+	% checktoolbox('libsvm');
 
   mapname = 'LIBSVM';
   argin = shiftargin(varargin,{'prmapping','char','cell'});
@@ -75,7 +75,7 @@ function [W,J,u] = libsvc(varargin)
 	elseif mapping_task(argin,'training')			% Train a mapping.
 
     [a,kernel,C] = check_for_old_call(argin);
-    opt = ['-s 0 -t 4 -b 1 -e 1e-3 -c ',num2str(C), ' -q'];
+    opt = ['-s 0 -t 0 -b 1 -e 1e-3 -c ',num2str(C), ' -q'];
     
     islabtype(a,'crisp');
 %    isvaldfile(a,1,2); % at least 1 object per class, 2 classes
