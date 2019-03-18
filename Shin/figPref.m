@@ -8,6 +8,8 @@ function figPref(font_size)
     set(0,'defaulttextfontsize',font_size);
     set(0,'defaultaxesfontweight','bold');
     set(0,'defaulttextfontweight','bold');
+    set(0,'defaultAxesFontName', 'Arial')
+    set(0,'defaultTextFontName', 'Arial')
     if 0
         set(0,'defaultaxesfontsize',6);
         set(0,'defaulttextfontsize',6);
