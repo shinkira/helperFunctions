@@ -24,7 +24,7 @@ function transportFigBatch(varargin)
             figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
         case 'shin-pc'
             if dropbox_flag
-                figpath = 'C:\Users\Shin\Dropbox (HMS)\TempFigs\';
+                figpath = 'E:\Dropbox (HMS)\TempFigs\';
             else
                 figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
             end
@@ -39,11 +39,15 @@ function transportFigBatch(varargin)
         set(gcf,'color','w')
         switch format
             case 'eps'
-                print2eps([figpath,fig_name,'.eps']);
+                % opt.fontswap = 0;
+                % print2eps([figpath,fig_name,'.eps'],gcf,opt);
+                print([figpath,fig_name,'.eps'],'-depsc')
             case 'png'
                 export_fig(gcf,[figpath,fig_name,'.png'],'-png','-nocrop');
             case 'jpg'
                 export_fig(gcf,[figpath,fig_name,'.jpg'],'-jpg','-nocrop');
+            case 'pdf'
+                print([figpath,fig_name,'.pdf'],'-dpdf','-bestfit') 
         end
     end
 end

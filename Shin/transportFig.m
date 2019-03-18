@@ -24,7 +24,8 @@ function transportFig(varargin)
             figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
         case 'shin-pc'
             if dropbox_flag
-                figpath = 'C:\Users\Shin\Dropbox (HMS)\TempFigs\';
+                figpath = 'E:\Dropbox (HMS)\TempFigs\';
+                % figpath = 'C:\Users\Shin\Dropbox (HMS)\TempFigs\';
             else
                 figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
             end
