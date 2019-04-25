@@ -39,16 +39,17 @@ function [ax,h]=suplabel(text,whichLabel,supAxes)
 currax=findobj(gcf,'type','axes','-not','tag','suplabel');
 
 if nargin < 3
- supAxes=[.08 .08 .84 .84];
+ supAxes=[.08 .08 .88 .88];
  ah=findall(gcf,'type','axes');
  if ~isempty(ah)
   supAxes=[inf,inf,0,0];
   leftMin=inf;  bottomMin=inf;  leftMax=0;  bottomMax=0;
-  axBuf=.04;
+  axBuf=.02;
+  % axBuf = 0;
   set(ah,'units','normalized')
   ah=findall(gcf,'type','axes');
   for ii=1:length(ah)
-   if strcmp(get(ah(ii),'Visible'),'on')
+   if 1 %strcmp(get(ah(ii),'Visible'),'on')
     thisPos=get(ah(ii),'Position');
     leftMin=min(leftMin,thisPos(1));
     bottomMin=min(bottomMin,thisPos(2));
@@ -56,7 +57,7 @@ if nargin < 3
     bottomMax=max(bottomMax,thisPos(2)+thisPos(4));
    end
   end
-  supAxes=[leftMin-axBuf,bottomMin-axBuf,leftMax-leftMin+axBuf*2,bottomMax-bottomMin+axBuf*2];
+  supAxes=[leftMin-axBuf,bottomMin,leftMax-leftMin+axBuf,bottomMax-bottomMin+axBuf];
  end
 end
 if nargin < 2, whichLabel = 'x';  end
