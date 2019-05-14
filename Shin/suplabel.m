@@ -44,8 +44,8 @@ if nargin < 3
  if ~isempty(ah)
   supAxes=[inf,inf,0,0];
   leftMin=inf;  bottomMin=inf;  leftMax=0;  bottomMax=0;
-  axBuf=.02;
-  % axBuf = 0;
+  % axBuf=.02;
+  axBuf = 0;
   set(ah,'units','normalized')
   ah=findall(gcf,'type','axes');
   for ii=1:length(ah)
@@ -57,7 +57,7 @@ if nargin < 3
     bottomMax=max(bottomMax,thisPos(2)+thisPos(4));
    end
   end
-  supAxes=[leftMin-axBuf,bottomMin,leftMax-leftMin+axBuf,bottomMax-bottomMin+axBuf];
+  supAxes=[leftMin-0.01,bottomMin,leftMax-leftMin+0.01,bottomMax-bottomMin+0.02];
  end
 end
 if nargin < 2, whichLabel = 'x';  end
