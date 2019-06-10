@@ -45,7 +45,7 @@ if nargin < 3
     if ~isempty(ah)
         supAxes=[inf,inf,0,0];
         leftMin=inf;  bottomMin=inf;  leftMax=0;  bottomMax=0;
-        axBuf=.04;
+        axBuf=0.04;
         set(ah,'units','normalized')
         ah=findall(gcf,'type','axes');
         for ii=1:length(ah)
@@ -57,9 +57,15 @@ if nargin < 3
             bottomMax=max(bottomMax,thisPos(2)+thisPos(4));
             end
         end
+        if bottomMin<0.17
+            bottomMin = 0.17;
+        end
         supAxes=[leftMin-axBuf,bottomMin-axBuf,leftMax-leftMin+axBuf*2,bottomMax-bottomMin+axBuf*2];
     end
 end
+
+
+
 if nargin < 2, whichLabel = 'x';  end
 if nargin < 1, help(mfilename); return; end
 
@@ -69,18 +75,19 @@ end
 whichLabel=lower(whichLabel);
 
 ax=axes('Units','Normal','Position',supAxes,'Visible','off','tag','suplabel');
+font_size = 18;
 if strcmp('t',whichLabel)
   set(get(ax,'Title'),'Visible','on')
-  title(text);
+  title(text,'FontSize',font_size);
 elseif strcmp('x',whichLabel)
   set(get(ax,'XLabel'),'Visible','on')
-  xlabel(text);
+  xlabel(text,'FontSize',font_size);
 elseif strcmp('y',whichLabel)
   set(get(ax,'YLabel'),'Visible','on')
-  ylabel(text);
+  ylabel(text,'FontSize',font_size);
 elseif strcmp('yy',whichLabel)
   set(get(ax,'YLabel'),'Visible','on')
-  ylabel(text);
+  ylabel(text,'FontSize',font_size);
   set(ax,'YAxisLocation','right')
 end
 
@@ -98,6 +105,7 @@ elseif strcmp('x',whichLabel)
 elseif strcmp('y',whichLabel) | strcmp('yy',whichLabel)
   h=get(ax,'YLabel');
 end
+
 
 %%%ah=findall(gcf,'type','axes');
 %%%'sssssssss',kb
