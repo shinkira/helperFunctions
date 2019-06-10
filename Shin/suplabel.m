@@ -40,25 +40,25 @@ function [ax,h]=suplabel(text,whichLabel,supAxes)
 currax=findobj(gcf,'type','axes','-not','tag','suplabel');
 
 if nargin < 3
- supAxes=[.08 .08 .84 .84];
- ah=findall(gcf,'type','axes');
- if ~isempty(ah)
-  supAxes=[inf,inf,0,0];
-  leftMin=inf;  bottomMin=inf;  leftMax=0;  bottomMax=0;
-  axBuf=.04;
-  set(ah,'units','normalized')
-  ah=findall(gcf,'type','axes');
-  for ii=1:length(ah)
-   if strcmp(get(ah(ii),'Visible'),'on')
-    thisPos=get(ah(ii),'Position');
-    leftMin=min(leftMin,thisPos(1));
-    bottomMin=min(bottomMin,thisPos(2));
-    leftMax=max(leftMax,thisPos(1)+thisPos(3));
-    bottomMax=max(bottomMax,thisPos(2)+thisPos(4));
-   end
-  end
-  supAxes=[leftMin-axBuf,bottomMin-axBuf,leftMax-leftMin+axBuf*2,bottomMax-bottomMin+axBuf*2];
- end
+    supAxes=[.08 .08 .84 .84];
+    ah=findall(gcf,'type','axes');
+    if ~isempty(ah)
+        supAxes=[inf,inf,0,0];
+        leftMin=inf;  bottomMin=inf;  leftMax=0;  bottomMax=0;
+        axBuf=.04;
+        set(ah,'units','normalized')
+        ah=findall(gcf,'type','axes');
+        for ii=1:length(ah)
+            if strcmp(get(ah(ii),'Visible'),'on')
+            thisPos=get(ah(ii),'Position');
+            leftMin=min(leftMin,thisPos(1));
+            bottomMin=min(bottomMin,thisPos(2));
+            leftMax=max(leftMax,thisPos(1)+thisPos(3));
+            bottomMax=max(bottomMax,thisPos(2)+thisPos(4));
+            end
+        end
+        supAxes=[leftMin-axBuf,bottomMin-axBuf,leftMax-leftMin+axBuf*2,bottomMax-bottomMin+axBuf*2];
+    end
 end
 if nargin < 2, whichLabel = 'x';  end
 if nargin < 1, help(mfilename); return; end
