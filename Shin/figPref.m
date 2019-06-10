@@ -3,7 +3,7 @@ function figPref(font_size)
     if ~exist('font_size','var')
         font_size = 12;
     end
-    
+    set(0,'DefaultAxesLineWidth',0.5);
     set(0,'DefaultAxesFontSize',font_size);
     set(0,'defaulttextfontsize',font_size);
     set(0,'defaultaxesfontweight','bold');
