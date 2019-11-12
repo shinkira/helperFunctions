@@ -1,4 +1,4 @@
-function hout=supertitle(str)
+function hout=supertitle(str,varargin)
 %SUPERTITLE Puts a title above all subplots.
 %       SUPERTITLE('text') adds text to the top of the figure
 %       above all subplots (a "super title"). Use this function
@@ -11,6 +11,8 @@ function hout=supertitle(str)
 
 % Parameters used to position the supertitle.
 
+S = varargin2S({'FontSize',12});
+
 % Amount of the figure window devoted to subplots
 plotregion = .95;
 
@@ -18,7 +20,11 @@ plotregion = .95;
 titleypos  = .97;
 
 % Fontsize for supertitle
-fs = get(gcf,'defaultaxesfontsize')+10;
+if isfield(S,'FontSize')
+    fs = S.FontSize;
+else
+    fs = get(gcf,'defaultaxesfontsize')+10;
+end
 
 % Fudge factor to adjust y spacing between subplots
 fudge=1;

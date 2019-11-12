@@ -6,14 +6,9 @@ function transportFig(varargin)
         format = varargin{1};
     end
     if length(varargin)<2
-        dropbox_flag = 0;
-    else
-        dropbox_flag = varargin{2};        
-    end
-    if length(varargin)<3
         headder = 'temp';
     else
-        headder = varargin{3};        
+        headder = varargin{2};        
     end
         
     % Copy all figures to the transfer directory in PNG format
@@ -23,16 +18,13 @@ function transportFig(varargin)
         case 'harveylabrig51'
             figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
         case 'shin-pc'
-            if dropbox_flag
-                figpath = 'E:\Dropbox (HMS)\TempFigs\';
-                % figpath = 'C:\Users\Shin\Dropbox (HMS)\TempFigs\';
-            else
-                figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
-            end
+            figpath = 'E:\Dropbox (HMS)\TempFigs\';
     end
-        
-    fig_name = headder;
+    
+    fig_num = get(gcf,'Number');
+    fig_name = sprintf('%s_%d',headder,fig_num);
     set(gcf,'color','w')
+    
     switch format
         case 'eps'
             print2eps([figpath,fig_name,'.eps']);
@@ -40,5 +32,7 @@ function transportFig(varargin)
             export_fig(gcf,[figpath,fig_name,'.png'],'-png','-nocrop');
         case 'jpg'
             export_fig(gcf,[figpath,fig_name,'.jpg'],'-jpg','-nocrop');
+        case 'pdf'
+            print(gcf,[figpath,fig_name,'.pdf'],'-dpdf');
     end
 end

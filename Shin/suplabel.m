@@ -45,7 +45,7 @@ if nargin < 3
     if ~isempty(ah)
         supAxes=[inf,inf,0,0];
         leftMin=inf;  bottomMin=inf;  leftMax=0;  bottomMax=0;
-        axBuf=0.04;
+        axBuf=0;
         set(ah,'units','normalized')
         ah=findall(gcf,'type','axes');
         for ii=1:length(ah)
