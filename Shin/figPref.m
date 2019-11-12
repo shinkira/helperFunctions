@@ -1,4 +1,4 @@
-function figPref(font_size)
+function figPref(font_size,n_screen)
 
     if ~exist('font_size','var')
         font_size = 12;
@@ -19,13 +19,21 @@ function figPref(font_size)
     set(0,'defaultaxesbox','off');
     set(0,'defaultFigureColor','w');
     screen_size = get(groot,'MonitorPositions');
-    if size(screen_size,1)==2
-        size_h = 560;
-        size_v = 420;
-        x_pos = screen_size(1,1) + screen_size(1,3)/2 - size_h - 10;
-        y_pos = screen_size(1,2) + screen_size(1,4)/2 - size_v/2;
-        set(0, 'DefaultFigurePosition', [x_pos y_pos size_h size_v]);
+    
+    if ~exist('n_screen','var')
+        n_screen = size(screen_size,1);
     end
+    size_h = 560;
+    size_v = 420;
+    switch n_screen
+        case 1
+            x_pos = screen_size(1,1) + screen_size(1,3)/2 - size_h - 10;
+            y_pos = screen_size(1,2) + screen_size(1,4)/2 - size_v/2;
+        case 2
+            x_pos = screen_size(2,1) + screen_size(2,3)/2 - size_h - 10;
+            y_pos = screen_size(2,2) + screen_size(2,4)/2 - size_v/2;
+    end
+    set(0, 'DefaultFigurePosition', [x_pos y_pos size_h size_v]);
     
     % use get(groot, 'factory') to see all the default settings
     default_color = [0 0 0];
