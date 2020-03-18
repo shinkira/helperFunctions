@@ -24,6 +24,7 @@ function transportFig(varargin)
     fig_num = get(gcf,'Number');
     fig_name = sprintf('%s_%d',headder,fig_num);
     set(gcf,'color','w')
+    set(gcf,'Renderer','Painters');
     
     switch format
         case 'eps'

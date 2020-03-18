@@ -27,6 +27,7 @@ function transportFigBatch(varargin)
     for i = 1:n
         fig_name = [headder,'_',num2str(h(i).Number)];
         figure(h(i).Number)
+        h(i).Renderer='Painters';
         set(gcf,'color','w')
         switch format
             case 'eps'

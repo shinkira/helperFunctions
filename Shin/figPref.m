@@ -30,8 +30,8 @@ function figPref(font_size,n_screen)
             x_pos = screen_size(1,1) + screen_size(1,3)/2 - size_h - 10;
             y_pos = screen_size(1,2) + screen_size(1,4)/2 - size_v/2;
         case 2
-            x_pos = screen_size(2,1) + screen_size(2,3)/2 - size_h - 10;
-            y_pos = screen_size(2,2) + screen_size(2,4)/2 - size_v/2;
+            x_pos = screen_size(1,1) + screen_size(2,3)/2 - size_h - 10;
+            y_pos = screen_size(1,2) + screen_size(2,4)/2 - size_v/2;
     end
     set(0, 'DefaultFigurePosition', [x_pos y_pos size_h size_v]);
     
