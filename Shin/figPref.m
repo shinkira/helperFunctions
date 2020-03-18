@@ -26,7 +26,7 @@ function figPref(font_size,n_screen)
     size_h = 560;
     size_v = 420;
     switch n_screen
-        case 1
+        case {1,3}
             x_pos = screen_size(1,1) + screen_size(1,3)/2 - size_h - 10;
             y_pos = screen_size(1,2) + screen_size(1,4)/2 - size_v/2;
         case 2
