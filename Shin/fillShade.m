@@ -1,4 +1,6 @@
-function varargout = fillTrace(X,Y,err,varargin)
+function varargout = fillShade(X,Y,err,varargin)
+
+    % fillTrace without the center line
     
     if length(varargin)<1 || isempty(varargin{1})
         c = [0 0 1];        
@@ -43,7 +45,7 @@ function varargout = fillTrace(X,Y,err,varargin)
     h = fill(M(:,1),M(:,2),fill_c,'LineStyle','none','FaceAlpha',0.3);
     % h = patch(M(:,1),M(:,2),fill_c);
     % set(h,'LineStyle','none','FaceAlpha',0.7);
-    plot(X,Y,'color',c,'LineWidth',0.5,'LineStyle',LineStyle);
+    % plot(X,Y,'color',c,'LineWidth',0.5,'LineStyle',LineStyle);
     
     varargout{1} = h;
     return

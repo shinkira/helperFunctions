@@ -10,5 +10,9 @@ function getFigPos
     end
     
     fprintf('\nset(gcf,''OuterPosition'',[%d %d %d %d])\n\n',pos(1),pos(2),pos(3),pos(4));
+    
+    % Change the figure position
+    cmd = sprintf('\nset(gcf,''OuterPosition'',[%d %d %d %d])\n\n',pos(1),pos(2),pos(3),pos(4));
+    eval(cmd);
 
 end

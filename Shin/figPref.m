@@ -3,11 +3,11 @@ function figPref(font_size,n_screen)
     if ~exist('font_size','var')
         font_size = 12;
     end
-    set(0,'DefaultAxesLineWidth',0.5);
+    set(0,'DefaultAxesLineWidth',0.25);
     set(0,'DefaultAxesFontSize',font_size);
     set(0,'defaulttextfontsize',font_size);
-    set(0,'defaultaxesfontweight','bold');
-    set(0,'defaulttextfontweight','bold');
+    set(0,'defaultaxesfontweight','normal'); % 'bold'
+    set(0,'defaulttextfontweight','normal'); % 'bold'
     set(0,'defaultAxesFontName', 'Arial')
     set(0,'defaultTextFontName', 'Arial')
     if 0
@@ -46,5 +46,14 @@ function figPref(font_size,n_screen)
     set(0,'defaultPolaraxesGridColor',default_color);
     set(0,'defaultPolaraxesRColor',default_color);
     set(0,'defaultPolaraxesThetaColor',default_color);
+    % plot with longer ticks
+    set(0,'defaultAxesTickLength',2.*[0.010 0.025]);% default [0.010 0.025]
     
+    h = get(groot, 'factory');
+    fn = fieldnames(h);
+    ind = find(contains(fn,'LineWidth'));
+    linewidth = 0.25;
+    for i = 1:length(ind)
+        set(0,['default',fn{ind(i)}(8:end)],linewidth);
+    end    
 end

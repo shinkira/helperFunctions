@@ -20,9 +20,7 @@ function fpath_new = updatePath(fpath)
         fpath_split = split(fpath,'\');
         ind_split = find(strcmp(fpath_split,'ShinDataAll'));
         if ~isempty(ind_split)
-            fpath_new = fullfile('E:',fpath_split{ind_split+1:end});
-        else
-            error('ShinDataAll not included in the file path.');
+            fpath_new = fullfile('E:\Dropbox (HMS)\data',fpath_split{ind_split:end});
         end
     end
 end
