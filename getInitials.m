@@ -10,6 +10,8 @@ elseif mouseNum<=58
     initials = 'TL';
 elseif mouseNum<=68
     initials = 'JD';
-else
+elseif mouseNum<=78
     initials = 'AN';
+else
+    initials = 'SK';
 end
