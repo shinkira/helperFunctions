@@ -18,7 +18,7 @@ function createComment(comment,n_shift,two_col)
         two_col = false;
     end
     
-    com_split = split(comment,'\n');
+    com_split = strsplit(comment,'\n');
     
     max_width = 75;
     shift_length = 4;
