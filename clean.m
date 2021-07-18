@@ -1,4 +1,4 @@
-clearvars -except input input50 input47
+clearvars -except input*
 close all
 % dbclear all
 clc

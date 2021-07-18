@@ -32,4 +32,5 @@ switch mode
         f_name2_new = sprintf('%s_MATLAB_Editor_State.xml',date_str);
         copyfile(fullfile(MyDir,f_name1_new),fullfile(AppDataDir,f_name1));
         copyfile(fullfile(MyDir,f_name2_new),fullfile(AppDataDir,f_name2));
+        exit(0);
 end
