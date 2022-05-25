@@ -9,6 +9,10 @@ function OrchestraName = changePath4Orchestra(name,server_name)
             %%% save in the temporary folder (scratch2) ***
             Imaging_ind = strfind(name,'Imaging');
             OrchestraName = ['/n/scratch2/sk574/',name(Imaging_ind(1):end)];
+        case 'scratch3'
+            %%% save in the temporary folder (scratch2) ***
+            Imaging_ind = strfind(name,'Imaging');
+            OrchestraName = ['/n/scratch3/users/s/sk574/',name(Imaging_ind(1):end)];
         case 'no_backup'
             %%% save in the temporary folder (no_backup) ***
             Imaging_ind = strfind(name,'Imaging');
