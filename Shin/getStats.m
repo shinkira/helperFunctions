@@ -17,10 +17,10 @@ function [v_mean, v_std, v_sem, n, v_median] = getStats(v,NameValueArgs)
     end
     
     n = size(v,1);
-    v_mean = mean(v,1);
-    v_median = median(v,1);
-    v_std  = std(v,[],1);
-    v_sem  = std(v,[],1)./sqrt(n);
+    v_mean = mean(v,1,'omitnan');
+    v_median = median(v,1,'omitnan');
+    v_std  = std(v,[],1,'omitnan');
+    v_sem  = std(v,[],1,'omitnan')./sqrt(n);
     
     if NameValueArgs.print
         switch NameValueArgs.central
