@@ -1,21 +1,28 @@
-function createAcqBatch(server_name)
+function createAcqBatch(dates,server_name)
 
-if nargin<1
-    server_name = 'scratch2';
-    % error('select the server_name: data2; scratch2; no_backup');
+if nargin<2
+    server_name = 'scratch3';
+    % error('select the server_name: data2; scratch2; scratch3; no_backup');
 end
 
 github_dir = 'C:\Users\Shin\Documents\GitHub\DmtsShared\DMTS';
 load(fullfile(github_dir,'info_set_good_okay.mat'));
 
-mouse_set = [9,15,20,31,35,45];
-for mi = 1:length(mouse_set)
-    pick = cell2mat(info_set(:,1))==mouse_set(mi);
-    date_set{mi} = cell2mat(info_set(pick,2));
+if 0
+    mouse_set = [9,15,20,31,35,45];
+    for mi = 1:length(mouse_set)
+        pick = cell2mat(info_set(:,1))==mouse_set(mi);
+        date_set{mi} = cell2mat(info_set(pick,2));
+    end
+else
+    mouse_set = 101:104;
+    for mi = 1:length(mouse_set)
+        date_set{mi} = dates;
+    end
 end
 
 if ispc
-    save_dir = '\\research.files.med.harvard.edu\Neurobio\HarveyLab\Tier2\Shin\ShinDataAll\Imaging\BatchAcqObj';
+    save_dir = '\\research.files.med.harvard.edu\Neurobio\HarveyLab\Tier1\Shin\ShinDataAll\ImagingSub\BatchAcqObj';
 else
     save_dir = '/Volumes/Neurobio/HarveyLab/Shin/ShinDataAll/Imaging/BatchAcqObj';
 end
@@ -27,7 +34,7 @@ for mi = 1:length(mouse_set)
         initials = getInitials(mouse_num);
         date_num = date_set{mi}(di);
                 
-        if ismember(mouse_num,[22,23,31,35,45])
+        if 1 % ismember(mouse_num,[22,23,31,35,45])
             FOV_list = {'FOV1_00001'};
         else
             FOV_list = {'FOV1_001'};
@@ -39,7 +46,7 @@ for mi = 1:length(mouse_set)
             elseif ismac
                 root_dir = '/Volumes';
             end
-            defaultDir = fullfile(root_dir,'Neurobio','HarveyLab','Tier2','Shin','ShinDataAll','Imaging',mouseID,num2str(date_num));
+            defaultDir = fullfile(root_dir,'Neurobio','HarveyLab','Tier1','Shin','ShinDataAll','Imaging',mouseID,num2str(date_num));
         else
             error('Essential variables are missing!')
         end
