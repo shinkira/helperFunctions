@@ -15,10 +15,15 @@ function varargout = fillTrace(X,Y,err,varargin)
     else
         LineStyle = varargin{3};        
     end
-    if length(varargin)<4 || isempty(varargin{3})
+    if length(varargin)<4 || isempty(varargin{4})
         LineWidth = 0.5;
     else
-        LineWidth = varargin{4};        
+        LineWidth = varargin{4};
+    end
+    if length(varargin)<5 || isempty(varargin{5})
+        FaceAlpha = 0.3;
+    else
+        FaceAlpha = varargin{5};
     end
     
     fill_c = 1-((1-c).*c_alpha);
@@ -45,7 +50,7 @@ function varargout = fillTrace(X,Y,err,varargin)
     
     % plot them
     hold on
-    h = fill(M(:,1),M(:,2),fill_c,'LineStyle','none','FaceAlpha',0.3);
+    h = fill(M(:,1),M(:,2),fill_c,'LineStyle','none','FaceAlpha',FaceAlpha);
     % h = patch(M(:,1),M(:,2),fill_c);
     % set(h,'LineStyle','none','FaceAlpha',0.7);
     plot(X,Y,'color',c,'LineWidth',LineWidth,'LineStyle',LineStyle);
