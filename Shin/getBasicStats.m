@@ -1,6 +1,7 @@
-function [v_mean, v_std, v_sem, n, v_median] = getStats(v,NameValueArgs)
+function [v_mean, v_std, v_sem, n, v_median] = getBasicStats(v,NameValueArgs)
 
     % v is a column vector (n_sample x 1) or a matrix (n_sample x features)
+    % [v_mean, v_std, v_sem, n, v_median] = getBasicStats(v,NameValueArgs)
     
     arguments
         v double
