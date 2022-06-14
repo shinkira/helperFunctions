@@ -8,7 +8,9 @@ function addDropboxPath
         case 'shin-macbook-pro'
             dropboxPath = '/Users/shin/Dropbox (HMS)';
         case 'shin-mbp'
-            dropboxPath = '/Users/shin/Dropbox (HMS)'; 
+            dropboxPath = '/Users/shin/Dropbox (HMS)';
+        case 'shin-m1max-macbook-pro'
+            dropboxPath = '/Users/shin/Dropbox (HMS)';
     end
     addpath(genpath(dropboxPath),'-END');
 end
