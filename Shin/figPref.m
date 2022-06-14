@@ -16,7 +16,7 @@ function figPref(font_size,n_screen)
     end
     set(0,'defaultaxestickdir','out');
     set(0,'defaultaxestickdirmode','manual');
-    set(0,'defaultaxesbox','off');
+    set(0,'defaultAxesBox','off');
     set(0,'defaultFigureColor','w');
     screen_size = get(groot,'MonitorPositions');
     

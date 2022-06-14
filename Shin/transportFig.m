@@ -19,6 +19,8 @@ function transportFig(varargin)
             figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
         case 'shin-pc'
             figpath = 'E:\Dropbox (HMS)\TempFigs\';
+        case 'shin-cp'
+            figpath = 'E:\Dropbox (HMS)\TempFigs\';
     end
     
     fig_num = get(gcf,'Number');
@@ -28,7 +30,7 @@ function transportFig(varargin)
     
     switch format
         case 'eps'
-            print2eps([figpath,fig_name,'.eps']);
+            print(gcf,[figpath,fig_name,'.eps'],'-depsc');
         case 'png'
             export_fig(gcf,[figpath,fig_name,'.png'],'-png','-nocrop');
         case 'jpg'
@@ -36,4 +38,5 @@ function transportFig(varargin)
         case 'pdf'
             print(gcf,[figpath,fig_name,'.pdf'],'-dpdf');
     end
+    
 end

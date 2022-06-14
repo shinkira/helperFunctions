@@ -1,4 +1,4 @@
-function varargout = fillTrace(X,Y,err,varargin)
+function varargout = fillTrace2(X,Y,err_neg,err_pos,varargin)
     
     if length(varargin)<1 || isempty(varargin{1})
         c = [0 0 1];        
@@ -15,15 +15,10 @@ function varargout = fillTrace(X,Y,err,varargin)
     else
         LineStyle = varargin{3};        
     end
-    if length(varargin)<4 || isempty(varargin{4})
+    if length(varargin)<4 || isempty(varargin{3})
         LineWidth = 0.5;
     else
-        LineWidth = varargin{4};
-    end
-    if length(varargin)<5 || isempty(varargin{5})
-        FaceAlpha = 0.3;
-    else
-        FaceAlpha = varargin{5};
+        LineWidth = varargin{4};        
     end
     
     fill_c = 1-((1-c).*c_alpha);
@@ -34,23 +29,28 @@ function varargout = fillTrace(X,Y,err,varargin)
     if isrow(Y)
         Y = Y';
     end
-    if isrow(err)
-        err = err';
+    if isrow(err_neg)
+        err_neg = err_neg';
+    end
+    if isrow(err_pos)
+        err_pos = err_pos';
     end
     pick = isfinite(Y);
     
     X = X(pick);
     Y = Y(pick);
-    err(isnan(err)) = 0;
-    err = err(pick);
+    err_neg(isnan(err_neg)) = 0;
+    err_pos(isnan(err_pos)) = 0;
+    err_neg = err_neg(pick);
+    err_pos = err_pos(pick);
     
-    Ylow = Y-err;
-    Yhi  = Y+err;
+    Ylow = Y - err_neg;
+    Yhi  = Y + err_pos;
     M = [X Ylow;flipud(X),flipud(Yhi)];
     
     % plot them
     hold on
-    h = fill(M(:,1),M(:,2),fill_c,'LineStyle','none','FaceAlpha',FaceAlpha);
+    h = fill(M(:,1),M(:,2),fill_c,'LineStyle','none','FaceAlpha',0.3);
     % h = patch(M(:,1),M(:,2),fill_c);
     % set(h,'LineStyle','none','FaceAlpha',0.7);
     plot(X,Y,'color',c,'LineWidth',LineWidth,'LineStyle',LineStyle);

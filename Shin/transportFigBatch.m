@@ -19,6 +19,8 @@ function transportFigBatch(varargin)
             figpath = 'C:\Users\Shin\Documents\MATLAB\ShinData\Transfer\';
         case 'shin-pc'
             figpath = 'E:\Dropbox (HMS)\tempFigs\';
+        case 'shin-cp'
+            figpath = 'E:\Dropbox (HMS)\TempFigs\';
     end
         
     h = findobj('type','figure');
@@ -35,7 +37,7 @@ function transportFigBatch(varargin)
                 % print2eps([figpath,fig_name,'.eps'],gcf,opt);
                 print([figpath,fig_name,'.eps'],'-depsc')
             case 'png'
-                export_fig(gcf,[figpath,fig_name,'.png'],'-png','-nocrop');
+                print(gcf,[figpath,fig_name,'.png'],'-dpng','-r300');
             case 'jpg'
                 export_fig(gcf,[figpath,fig_name,'.jpg'],'-jpg','-nocrop');
             case 'pdf'
