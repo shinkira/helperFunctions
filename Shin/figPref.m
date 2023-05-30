@@ -1,9 +1,21 @@
-function figPref(font_size,n_screen)
+function figPref(font_size,n_screen,line_width,varargin)
 
-    if ~exist('font_size','var')
+    if ~exist('font_size','var') || isempty(font_size)
         font_size = 12;
     end
-    set(0,'DefaultAxesLineWidth',0.25);
+    
+    if ~exist('line_width','var') || isempty(line_width)
+        line_width = 0.25;
+    end
+    
+    n = length(varargin);
+    if ~isempty(n)
+        if mod(n,2)
+            error('Name-value pairs are expected.');
+        end
+    end
+    
+    set(0,'DefaultAxesLineWidth',line_width);
     set(0,'DefaultAxesFontSize',font_size);
     set(0,'defaulttextfontsize',font_size);
     set(0,'defaultaxesfontweight','normal'); % 'bold'
@@ -20,7 +32,7 @@ function figPref(font_size,n_screen)
     set(0,'defaultFigureColor','w');
     screen_size = get(groot,'MonitorPositions');
     
-    if ~exist('n_screen','var')
+    if ~exist('n_screen','var') || isempty(n_screen)
         n_screen = size(screen_size,1);
     end
     size_h = 560;
@@ -52,8 +64,16 @@ function figPref(font_size,n_screen)
     h = get(groot, 'factory');
     fn = fieldnames(h);
     ind = find(contains(fn,'LineWidth'));
-    linewidth = 0.25;
     for i = 1:length(ind)
-        set(0,['default',fn{ind(i)}(8:end)],linewidth);
-    end    
+        try
+            set(0,['default',fn{ind(i)}(8:end)],line_width);
+        catch
+            set(0,['default',fn{ind(i)}(8:end)],'auto');
+        end
+    end
+    
+    % overwrite default by varargin
+    for i = 1:2:n
+        set(0,varargin{i},varargin{i+1});
+    end
 end
