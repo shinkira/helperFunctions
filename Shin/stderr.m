@@ -1,3 +1,11 @@
-function se = stderr(data)
+function se = stderr(varargin)
 
-se = std(data)/sqrt(length(data));
+sd = std(varargin{:});
+data = varargin{1};
+if any(strcmpi(varargin,'omitnan'))
+    n = sum(~isnan(data));
+else
+    n = length(data);
+end
+    
+se = sd./sqrt(n);
