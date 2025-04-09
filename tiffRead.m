@@ -1,4 +1,4 @@
-function varargout = tiffRead(fPath, castType, isSilent)
+function varargout = tiffRead(fPath, castType, isSilent, metaOnly)
 % [img, metadata] = tiffRead(fPath, castType, isSilent)
 
 %turn off warning thrown by reading in scanImage3 files
@@ -10,6 +10,10 @@ end
 
 if ~exist('isSilent', 'var') || isempty(isSilent)
     isSilent = false;
+end
+
+if ~exist('metaOnly', 'var') || isempty(isSilent)
+    metaOnly = false;
 end
 
 % Gracefully handle missing extension:
@@ -26,28 +30,30 @@ end
 % Create Tiff object:
 t = Tiff(fPath);
 
-% Get number of directories (= frames):
-t.setDirectory(1);
-while ~t.lastDirectory
-    t.nextDirectory;
-end
-nDirectories = t.currentDirectory;
-
-% Load all directories (= frames):
-img = zeros(t.getTag('ImageLength'), ...
-    t.getTag('ImageWidth'), ...
-    nDirectories, ...
-    castType);
-
-for i = 1:nDirectories
-    t.setDirectory(i);
-    img(:,:,i) = t.read;
-    if ~isSilent && ~mod(i, 200)
-        fprintf('%1.0f frames of %d loaded.\n', i, nDirectories);
+if ~metaOnly
+    % Get number of directories (= frames):
+    t.setDirectory(1);
+    while ~t.lastDirectory
+        t.nextDirectory;
     end
-end
+    nDirectories = t.currentDirectory;
 
-varargout{1} = img;
+    % Load all directories (= frames):
+    img = zeros(t.getTag('ImageLength'), ...
+        t.getTag('ImageWidth'), ...
+        nDirectories, ...
+        castType);
+
+    for i = 1:nDirectories
+        t.setDirectory(i);
+        img(:,:,i) = t.read;
+        if ~isSilent && ~mod(i, 200)
+            fprintf('%1.0f frames of %d loaded.\n', i, nDirectories);
+        end
+    end
+
+    varargout{1} = img;
+end
 
 %turn back on warning to avoid conflicts later
 warning('on','MATLAB:imagesci:tiffmexutils:libtiffWarning'),
@@ -76,7 +82,8 @@ if nargout > 1
         elseif contains(imgDesc, 'state.')
             scanImageVersion = 3;
         elseif contains(imgDesc, 'dcOverVoltage')
-            scanImageVersion = 2016;
+            scanImageVersion = 2023;
+            % scanImageVersion = 2016;
         else
             scanImageVersion = -1;
         end
@@ -105,6 +112,28 @@ if nargout > 1
             temp(ind(2:end)-1) = ';';
             temp(end) = ';';
             eval(temp);
+            varargout{2} = SI;
+            % siHeader = scanimage.util.opentif(fPath);
+            % varargout{2} = siHeader;
+        case 2023
+            info = imfinfo(fPath);
+            temp = info.Software;
+            ind = strfind(temp,'SI.');
+            temp(ind(2:end)-1) = ';';
+            temp(end) = ';';
+            %%
+            for i = 1:length(ind)-1
+                temp_cmd = temp(ind(i):ind(i+1)-1);
+                try
+                    eval(temp_cmd);
+                catch
+                    temp_cmd = insertBefore(temp_cmd,'[','''');
+                    temp_cmd = insertAfter(temp_cmd,']','''');
+                    eval(temp_cmd);
+                end
+            end
+            
+            % eval(temp);
             varargout{2} = SI;
             % siHeader = scanimage.util.opentif(fPath);
             % varargout{2} = siHeader;
