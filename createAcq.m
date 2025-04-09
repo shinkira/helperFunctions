@@ -1,10 +1,10 @@
-function createAcq(mouse_num,date_num,varargin)
+getfunction createAcq(mouse_num,date_num,varargin)
 
     varargin2V(varargin);
     initials = getInitials(mouse_num);
     mouseID = sprintf('%s%03d',initials,mouse_num);
     server_name = 'scratch2';
-    o2_flag = true;
+    o2_flag = false;
 
     if exist('mouse_num','var') && exist('date_num','var')
         if ispc
@@ -12,17 +12,22 @@ function createAcq(mouse_num,date_num,varargin)
         elseif ismac
             root_dir = '/Volumes';
         end
-        defaultDir = fullfile(root_dir,'Neurobio','HarveyLab','Tier2','Shin','ShinDataAll','Imaging',mouseID,num2str(date_num));
-        save_dir   = fullfile(root_dir,'Neurobio','HarveyLab','Tier2','Shin','ShinDataAll','Imaging','BatchAcqObj');
+        defaultDir = fullfile(root_dir,'Neurobio','HarveyLab','Tier1','Shin','ShinDataAll','ImagingNew',mouseID,num2str(date_num));
+        save_dir   = fullfile(root_dir,'Neurobio','HarveyLab','Tier1','Shin','ShinDataAll','ImagingNew','BatchAcqObj');
+        
+        % defaultDir = fullfile(root_dir,'Neurobio','HarveyLab','Tier2','Shin','ShinDataAll','Imaging',mouseID,num2str(date_num));
+        % save_dir   = fullfile(root_dir,'Neurobio','HarveyLab','Tier2','Shin','ShinDataAll','Imaging','BatchAcqObj');
 
     else
         error('Essential variables are missing!')
     end
-
-    if ismember(mouse_num,[22,23,31,35,45])
-        FOV_name = 'FOV1_00001';
-    else
-        FOV_name = 'FOV1_001';
+    
+    if ~exist('FOV_name','var')    
+        if ismember(mouse_num,[22,23,31,35,45])
+            FOV_name = 'FOV1_00001';
+        else
+            FOV_name = 'FOV1_001';
+        end
     end
     
     Acq_name = [initials,sprintf('%03d',mouse_num),'_',num2str(date_num),'_',FOV_name];
