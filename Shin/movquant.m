@@ -48,7 +48,7 @@ function quant_X = movquant(X, p, n, dim, nanflag, padding)
         X_ax_idces = cell(ndims(X), 1);
         X_ax_idces{dim} = 1:N;
         if dim == 1
-            [X_ax_idces{2:end}] = ind2sub(sX_wo_dim, ii);
+            [X_ax_idces{2:end}] = ind2sub([sX_wo_dim, 1], ii);
         elseif dim == ndims(X)
             [X_ax_idces{1:end-1}] = ind2sub(sX_wo_dim, ii);
         else
